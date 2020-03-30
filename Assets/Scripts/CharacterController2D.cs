@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    float speed = 1.0f;
+    private float speed = 5.0f;
     private Rigidbody2D characterbody;
     private bool jump = false;
 
@@ -26,12 +26,12 @@ public class CharacterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !jump)
+        if(Input.GetKeyDown(KeyCode.W) && !jump)
         {
-            characterbody.AddForce(Vector2.up * 0.1f);
+            characterbody.AddForce(Vector2.up * 10.0f);
             jump = true;
         }
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         transform.position += move * speed * Time.deltaTime;
     }
 
