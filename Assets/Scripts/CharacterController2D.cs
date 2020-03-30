@@ -28,7 +28,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.W) && !jump)
         {
-            characterbody.AddForce(Vector2.up * 10.0f);
+            characterbody.AddForce(transform.up * 15.0f, ForceMode2D.Impulse);
             jump = true;
         }
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
