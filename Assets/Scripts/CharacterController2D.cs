@@ -10,7 +10,7 @@ public class CharacterController2D : MonoBehaviour
 {
     private float speed = 5.0f;
     private Rigidbody2D characterbody;
-    private bool jump = false;
+    private bool jump = false, right = true;
 
     private void Awake()
     {
@@ -26,12 +26,17 @@ public class CharacterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W) && !jump)
+        if(!jump && Input.GetKeyDown(KeyCode.W))
         {
             characterbody.AddForce(transform.up * 15.0f, ForceMode2D.Impulse);
             jump = true;
         }
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        if (Input.GetAxis("Horizontal") > 0 && !right)
+            flip();
+        else if (Input.GetAxis("Horizontal") < 0 && right)
+            flip();
+                    
         transform.position += move * speed * Time.deltaTime;
     }
 
@@ -39,5 +44,12 @@ public class CharacterController2D : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
             jump = false;
+    }
+
+    private void flip()
+    {
+        right = !right;
+
+        transform.Rotate(0f, 180f, 0f);
     }
 }
