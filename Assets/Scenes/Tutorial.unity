@@ -364,12 +364,13 @@ MonoBehaviour:
   firePoint: {fileID: 792755257}
   bulletPrefab: {fileID: 748273140385229505, guid: 996d343b5804c6b42a255c58d413ee1e,
     type: 3}
-  weaponType: submachinegun
+  weaponType: snip
   fireRate: 0
   shot: 0
   semishot: 0
   time: 0
   canFire: 1
+  fired: 0
 --- !u!1 &792755256
 GameObject:
   m_ObjectHideFlags: 0

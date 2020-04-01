@@ -8,7 +8,7 @@ public class CharacterShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public string weaponType = "pistol";
     public float fireRate, shot = 0f, semishot = 0f, time;
-    public bool canFire = true; // describes whether semiauto guns have a charge
+    public bool canFire = true, fired = false; // describes whether semiauto guns have a charge
     
     // Start is called before the first frame update
     void Start()
@@ -19,20 +19,22 @@ public class CharacterShoot : MonoBehaviour
     // Update is called one per frame
     void Update()
     {
-        if (weaponType == "submachinegun")
+        if (weaponType == "smg")
             fireRate = 300.0f;
-        else if (weaponType == "assualt rifle")
+        else if (weaponType == "ar")
             fireRate = 200.0f;
-        else if (weaponType == "pistol")
+        else if (weaponType == "pstl")
             fireRate = 60.0f;
+        else if (weaponType == "snip")
+            fireRate = 20.0f;
 
 
 
         if (Input.GetButton("Fire1"))
         {
-            if (weaponType == "pistol" || weaponType == "sniper")
+            if (weaponType == "pstl" || weaponType == "snip")
             {
-                if (canFire)
+                if (canFire && !fired)
                 {
                     Shoot();
                     canFire = false;
@@ -44,10 +46,14 @@ public class CharacterShoot : MonoBehaviour
                 shot = Time.time;
                 Shoot();
             }
+            fired = true;
         }
         if (semishot > 0)
             semishot -= Time.deltaTime;
         canFire = (semishot <= 0);
+
+        if (Input.GetKeyUp("mouse 0"))
+            fired = false;   
     }
 
     private void Shoot() {
