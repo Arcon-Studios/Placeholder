@@ -38,7 +38,7 @@ public class CharacterShoot : MonoBehaviour
                 {
                     Shoot();
                     canFire = false;
-                    semishot = (fireRate / 60.0f);
+                    semishot = (60.0f / fireRate);
                 }
             }
             else if (Time.time - shot > 1 / (fireRate / 60))
