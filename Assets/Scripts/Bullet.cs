@@ -6,13 +6,14 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
     public Rigidbody2D rb;
-    public float dmg = 5.0f;
+    private float dmg = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb.velocity = transform.right * speed;
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,5 +28,10 @@ public class Bullet : MonoBehaviour
     private void OnBecameInvisible()
     {
         Object.Destroy(gameObject);
+    }
+
+    public void setdmg(float inc_dmg)
+    {
+        dmg = inc_dmg;
     }
 }
