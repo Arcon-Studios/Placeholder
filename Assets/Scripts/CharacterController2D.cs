@@ -31,13 +31,13 @@ public class CharacterController2D : MonoBehaviour
             characterbody.AddForce(transform.up * 15.0f, ForceMode2D.Impulse);
             jump = true;
         }
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), 0);
         if (Input.GetAxis("Horizontal") > 0 && !right)
             flip();
         else if (Input.GetAxis("Horizontal") < 0 && right)
             flip();
                     
-        transform.position += move * speed * Time.deltaTime;
+        transform.position += ((Vector3) move)) * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
