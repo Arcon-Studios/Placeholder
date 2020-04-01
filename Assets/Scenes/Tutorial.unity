@@ -367,6 +367,9 @@ MonoBehaviour:
   weaponType: submachinegun
   fireRate: 0
   shot: 0
+  semishot: 0
+  time: 0
+  canFire: 1
 --- !u!1 &792755256
 GameObject:
   m_ObjectHideFlags: 0

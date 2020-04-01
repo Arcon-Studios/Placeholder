@@ -37,7 +37,7 @@ public class CharacterController2D : MonoBehaviour
         else if (Input.GetAxis("Horizontal") < 0 && right)
             flip();
                     
-        transform.position += ((Vector3) move)) * speed * Time.deltaTime;
+        transform.position += (Vector3) move * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
