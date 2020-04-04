@@ -10,7 +10,7 @@ public class CharacterController2D : MonoBehaviour
 {
     private float speed = 5.0f;
     private Rigidbody2D characterbody;
-    private bool jump = false, right = true;
+    private bool jump = false;
 
     private void Awake()
     {
@@ -31,29 +31,22 @@ public class CharacterController2D : MonoBehaviour
             characterbody.AddForce(transform.up * 15.0f, ForceMode2D.Impulse);
             jump = true;
         }
-        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), 0);
-        if (Input.GetAxis("Horizontal") > 0 && !right)
-            flip();
-        else if (Input.GetAxis("Horizontal") < 0 && right)
-            flip();
-                    
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+ 
 
-        transform.position += (Vector3) move * speed * Time.deltaTime;
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, move, speed * Time.deltaTime);
 
-        transform.position += ((Vector3) move) * speed * Time.deltaTime;
-
+        if (raycastHit.collider.tag == "wall")
+        {
+           
+        }
+        else
+            transform.position += move * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
             jump = false;
-    }
-
-    private void flip()
-    {
-        right = !right;
-
-        transform.Rotate(0f, 180f, 0f);
     }
 }
