@@ -19,22 +19,22 @@ public class CharacterShoot : MonoBehaviour
     // Update is called one per frame
     void Update()
     {
-        if (weaponType == "smg")
+        if (weaponType == "submachinegun")
         {
             fireRate = 300.0f;
             dmg = 5.0f;
         }
-        else if (weaponType == "ar")
+        else if (weaponType == "rifle")
         {
             fireRate = 200.0f;
             dmg = 10.0f;
         }
-        else if (weaponType == "pstl")
+        else if (weaponType == "pistol")
         {
             fireRate = 60.0f;
             dmg = 5.0f;
         }
-        else if (weaponType == "snip")
+        else if (weaponType == "sniper")
         {
             fireRate = 20.0f;
             dmg = 30.0f;
@@ -43,7 +43,7 @@ public class CharacterShoot : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            if (weaponType == "pstl" || weaponType == "snip")
+            if (weaponType == "pistol" || weaponType == "sniper")
             {
                 if (canFire && !fired)
                 {
